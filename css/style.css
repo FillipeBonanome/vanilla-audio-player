@@ -221,3 +221,11 @@ table {
     fill: white !important;
     transition: fill 0.1s ease-in;
 }
+
+.extra-buttons {
+    margin-top: 24px;
+}
+
+#repeat-button {
+    opacity: 0.5;
+}

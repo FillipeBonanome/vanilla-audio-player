@@ -3,6 +3,7 @@ const playerTheme = document.getElementById('player');
 const playButton = document.getElementById('play-button');
 const backButton = document.getElementById('back-button');
 const fowardButton = document.getElementById('foward-button');
+const repeatButton = document.getElementById('repeat-button');
 const audio = document.getElementById('audio');
 const songSpeed = document.getElementById('song-speed');
 const songName = document.getElementById('song-name');
@@ -89,9 +90,9 @@ function updateAudioTime() {
     }
 }
 
-//Função para atualizar o nome da música TODO
+//Função para atualizar o nome da música
 function updateAudioName() {
-
+    //TODO
 }
 
 //Atualiza a barra de progresso de acordo com a música
@@ -105,6 +106,11 @@ function addAudioTime(value) {
     audio.currentTime = Math.max(Math.min(audio.duration, audio.currentTime + value), 0);
 }
 
+//Muda o modo de repeat na musica
+function changeLoopMode() {
+    audio.loop = !audio.loop;
+}
+
 //Quando clicar pausar a música
 audioProgress.addEventListener('mousedown', () => {
     audio.pause();
@@ -116,14 +122,21 @@ audioProgress.addEventListener('mouseup', () => {
     audio.currentTime = audio.duration * audioProgress.value;
 })
 
+//Evento para quando clicar em voltar
 backButton.addEventListener('click', () => {
     addAudioTime(-timeSkipAmount);
 });
 
+//Evento para quando clicar em avançar
 fowardButton.addEventListener('click', () => {
     addAudioTime(timeSkipAmount);
 });
 
+//Evento para repetir a música ou não
+repeatButton.addEventListener('click', () => {
+    changeLoopMode();
+    repeatButton.style.opacity = audio.loop === true ? 1 : 0.5; 
+})
 
 //Atualizar o tempo da música sempre que necessário
 updateAudioTime();
