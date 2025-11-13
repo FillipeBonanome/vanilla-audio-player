@@ -156,7 +156,23 @@ table {
 }
 
 #audio-progress {
+    -webkit-appearance: none;
     width: 100%;
+    border-radius: 5px;
+}
+
+#audio-progress::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 12px;
+    height: 12px;
+    background-color: var(--detail-color);
+    border-radius: 20px;
+    transform: translateY(-33%);
+}
+
+#audio-progress::-webkit-slider-runnable-track {
+    height: 4px;
+    border-radius: 8px;
 }
 
 #song-speed {
