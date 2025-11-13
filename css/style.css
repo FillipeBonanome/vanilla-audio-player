@@ -157,6 +157,7 @@ table {
 #song-speed {
     font-size: 12px;
     font-weight: 400;
+    cursor: default;
 }
 
 .time-stamp {
@@ -189,10 +190,12 @@ table {
     cursor: pointer;
 }
 
-.button svg {
+.button svg, .small-button svg {
     fill: var(--detail-color);
+    transition: fill 0.2s ease-in;
 }
 
-.small-button svg {
-    fill: var(--detail-color);
+.flash-white {
+    fill: white !important;
+    transition: fill 0.1s ease-in;
 }
