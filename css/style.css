@@ -1,0 +1,198 @@
+/*reset*/
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+body {
+	line-height: 1;
+    background-color: var(--background-color);
+}
+
+ol, ul {
+	list-style: none;
+}
+
+blockquote, q {
+	quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* Tema principal */
+:root {
+    --gradient-colors: linear-gradient(to right, #051937, #004d7a, #008793, #00bf72, #a8eb12);
+    --font-color: rgb(255, 254, 246);
+    --detail-color: rgb(255, 254, 246);
+    --background-color: #ffeee0;
+}
+
+.classic-theme {
+    --gradient-colors: linear-gradient(to right, #051937, #004d7a, #008793, #00bf72, #a8eb12);
+    --font-color: rgb(255, 254, 246);
+    --detail-color: rgb(255, 254, 246);
+}
+
+.purple-mode {
+    --gradient-colors: linear-gradient(to right, #160427, #26104a, #3a1670, #511a97, #6a1cc0);
+    --detail-color: rgb(250, 125, 42);
+    --font-color: rgb(255, 241, 223);
+}
+
+.salmon-mode {
+    --gradient-colors: linear-gradient(to right, #f0295d, #fc464c, #ff623b, #ff7d28, #ff9711);
+    --detail-color: rgb(78, 7, 158);
+    --font-color: rgb(255, 241, 223);
+}
+
+.gray-mode {
+    --gradient-colors: linear-gradient(to right, #091018, #171a1f, #222327, #2d2d2f, #373737);
+    --detail-color: rgb(17, 94, 196);
+    --font-color: rgb(41, 162, 218);
+}
+
+.plain-light-gray-mode {
+    --gradient-colors: linear-gradient(to right, #b1b1b1, #b1b1b1, #b1b1b1, #b1b1b1, #b1b1b1);
+    --detail-color: rgb(255, 147, 24);
+    --font-color: black;
+}
+
+.theme-selection {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 24px;
+    gap: 12px;
+}
+
+.player-container {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+}
+
+.theme-display {
+    height: 64px;
+    width: 64px;
+    border-radius: 5px;
+    background-image: var(--gradient-colors);
+    color: var(--font-color);
+    cursor: pointer;
+}
+
+.player {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 300px;
+    width: 300px;
+    border-radius: 25px;
+    -webkit-box-shadow: 8px 14px 22px 5px rgba(0,0,0,0.48); 
+    box-shadow: 8px 14px 22px 5px rgba(0,0,0,0.48);
+    background-image: var(--gradient-colors);
+    color: var(--font-color);
+    text-align: center;
+}
+
+.song-info {
+    margin-top: 24px;
+}
+
+#song-name {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+#artist-name {
+    font-size: 12px;
+    font-weight: 200;
+    margin-top: 8px;
+}
+
+.player-bar {
+    display:flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-top:28px
+}
+
+#song-speed {
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.time-stamp {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    font-size: 12px;
+    font-weight: 200;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 64px;
+    width: 100%;;
+    margin-top: 36px;
+    gap: 12px;
+}
+
+.button {
+    height: 48px;
+    width: 48px;
+    cursor: pointer;
+}
+
+.small-button {
+    height: 32px;
+    width: 32px;
+    cursor: pointer;
+}
+
+.button svg {
+    fill: var(--detail-color);
+}
+
+.small-button svg {
+    fill: var(--detail-color);
+}
