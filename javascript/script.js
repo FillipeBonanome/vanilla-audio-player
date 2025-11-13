@@ -3,10 +3,19 @@ const playerTheme = document.getElementById('player');
 const playButton = document.getElementById('play-button');
 const audio = document.getElementById('audio');
 const songSpeed = document.getElementById('song-speed');
+const songName = document.getElementById('song-name');
+const artistName = document.getElementById('artist-name');
 const timeNow = document.getElementById('time-now');
 const timeEnd = document.getElementById('time-end');
+const audioProgress = document.getElementById('audio-progress');
 
-let playState = false;
+const audioContext = new AudioContext();
+const source = audioContext.createMediaElementSource(audio);
+const volume = audioContext.createGain();
+volume.gain.value = 0.1;
+
+source.connect(volume).connect(audioContext.destination)
+
 let playSpeed = [1.0, 1.25, 1.5, 1.75, 2.0, 0.5, 0.75]
 let playSpeedState = 0;
 
@@ -31,9 +40,11 @@ for(i = 0; i < themeSelectors.length; i++) {
 
 //Inicia e pausa a música
 playButton.addEventListener('click', () => {
-    playState == false ?
-        audio.play() : audio.pause();
-    playState = !playState;
+    audio.paused === true ? audio.play() : audio.pause();
+
+    if (audioContext.state === 'suspended') {
+        audioContext.resume();
+    }
 
     const playSVG = playButton.children[0];
     playSVG.classList.add('flash-white');
@@ -74,6 +85,32 @@ function updateAudioTime() {
     }
 }
 
-//Atualizar o tempo da música todo segundo
+//Função para atualizar o nome da música TODO
+function updateAudioName() {
+
+}
+
+//Atualiza a barra de progresso de acordo com a música
+function updateAudioProgress() {
+    const audioPercentage = audio.currentTime / audio.duration;
+    audioProgress.value = audioPercentage;
+}
+
+//Quando clicar pausar a música
+audioProgress.addEventListener('mousedown', () => {
+    audio.pause();
+})
+
+//Quando soltar o clique atualizar o tempo da música de acordo com a barra
+audioProgress.addEventListener('mouseup', () => {
+    audio.play();
+    audio.currentTime = audio.duration * audioProgress.value;
+})
+
+//Atualizar o tempo da música sempre que necessário
 updateAudioTime();
-setInterval(updateAudioTime, 100);
+updateAudioName();
+audio.addEventListener('timeupdate', () => {
+    updateAudioProgress();
+    updateAudioTime();
+});
