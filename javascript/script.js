@@ -1,6 +1,8 @@
 const themeSelectors = document.getElementsByClassName('theme-display');
 const playerTheme = document.getElementById('player');
 const playButton = document.getElementById('play-button');
+const backButton = document.getElementById('back-button');
+const fowardButton = document.getElementById('foward-button');
 const audio = document.getElementById('audio');
 const songSpeed = document.getElementById('song-speed');
 const songName = document.getElementById('song-name');
@@ -8,6 +10,8 @@ const artistName = document.getElementById('artist-name');
 const timeNow = document.getElementById('time-now');
 const timeEnd = document.getElementById('time-end');
 const audioProgress = document.getElementById('audio-progress');
+
+const timeSkipAmount = 5;
 
 const audioContext = new AudioContext();
 const source = audioContext.createMediaElementSource(audio);
@@ -96,6 +100,11 @@ function updateAudioProgress() {
     audioProgress.value = audioPercentage;
 }
 
+//Adiciona um tempo no current time da música
+function addAudioTime(value) {
+    audio.currentTime = Math.max(Math.min(audio.duration, audio.currentTime + value), 0);
+}
+
 //Quando clicar pausar a música
 audioProgress.addEventListener('mousedown', () => {
     audio.pause();
@@ -107,6 +116,15 @@ audioProgress.addEventListener('mouseup', () => {
     audio.currentTime = audio.duration * audioProgress.value;
 })
 
+backButton.addEventListener('click', () => {
+    addAudioTime(-timeSkipAmount);
+});
+
+fowardButton.addEventListener('click', () => {
+    addAudioTime(timeSkipAmount);
+});
+
+
 //Atualizar o tempo da música sempre que necessário
 updateAudioTime();
 updateAudioName();
@@ -114,3 +132,4 @@ audio.addEventListener('timeupdate', () => {
     updateAudioProgress();
     updateAudioTime();
 });
+
