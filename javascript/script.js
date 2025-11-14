@@ -151,7 +151,7 @@ volumeProgress.addEventListener('input', () => {
     volume.gain.value = volumeProgress.value;
 })
 
-//Evento para atualizar o song path
+//Evento para atualizar a música e as informações
 songFileButton.addEventListener('change', () => {
     const file = songFileButton.files[0];
 
