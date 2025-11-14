@@ -11,13 +11,14 @@ const artistName = document.getElementById('artist-name');
 const timeNow = document.getElementById('time-now');
 const timeEnd = document.getElementById('time-end');
 const audioProgress = document.getElementById('audio-progress');
+const volumeProgress = document.getElementById('audio-volume');
 
 const timeSkipAmount = 5;
 
 const audioContext = new AudioContext();
 const source = audioContext.createMediaElementSource(audio);
 const volume = audioContext.createGain();
-volume.gain.value = 0.1;
+volume.gain.value = volumeProgress.value;
 
 source.connect(volume).connect(audioContext.destination)
 
@@ -136,6 +137,11 @@ fowardButton.addEventListener('click', () => {
 repeatButton.addEventListener('click', () => {
     changeLoopMode();
     repeatButton.style.opacity = audio.loop === true ? 1 : 0.5; 
+})
+
+//Evento para mudar o volume da música
+volumeProgress.addEventListener('input', () => {
+    volume.gain.value = volumeProgress.value;
 })
 
 //Atualizar o tempo da música sempre que necessário
