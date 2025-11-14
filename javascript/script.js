@@ -12,6 +12,11 @@ const timeNow = document.getElementById('time-now');
 const timeEnd = document.getElementById('time-end');
 const audioProgress = document.getElementById('audio-progress');
 const volumeProgress = document.getElementById('audio-volume');
+const songSelectButton = document.getElementById('song-select-button');
+const songFileButton = document.getElementById('song-file-button');
+var jsmediatags = window.jsmediatags;
+
+let playedSong = null;
 
 const timeSkipAmount = 5;
 
@@ -29,6 +34,8 @@ let playSpeedState = 0;
 function updateTheme(themeName) {
     playerTheme.className = 'player';
     playerTheme.classList.add(themeName);
+
+    songSelectButton.className = themeName;
 }
 
 //Cria eventos de click para todos os temas
@@ -142,6 +149,34 @@ repeatButton.addEventListener('click', () => {
 //Evento para mudar o volume da música
 volumeProgress.addEventListener('input', () => {
     volume.gain.value = volumeProgress.value;
+})
+
+//Evento para atualizar o song path
+songFileButton.addEventListener('change', () => {
+    const file = songFileButton.files[0];
+
+    if (file) {
+        const audioURL = URL.createObjectURL(file);
+        audio.src = audioURL;
+        audio.currentTime = 0;
+        audio.play();
+        updateAudioTime();
+        
+        jsmediatags.read(file, {
+            onSuccess: function(tag) {
+                const data = tag.tags;
+                songName.textContent = data.title ? data.title : 'Unknown';
+                artistName.textContent = data.artist ? data.artist : 'Unknown';
+                console.log(data);
+            },
+            onError: function(error) {
+                songName.textContent = 'Unknown';
+                artistName.textContent = 'Unknown';
+            }
+        })
+
+    }
+    
 })
 
 //Atualizar o tempo da música sempre que necessário

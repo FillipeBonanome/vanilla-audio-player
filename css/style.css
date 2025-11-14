@@ -104,8 +104,10 @@ table {
 .player-container {
     font-family: 'Roboto', sans-serif;
     display: flex;
-    justify-content: center;
+    margin: 0 auto;
+    justify-content: space-around;
     align-items: center;
+    width: 60%;
     height: 60vh;
 }
 
@@ -116,6 +118,18 @@ table {
     background-image: var(--gradient-colors);
     color: var(--font-color);
     cursor: pointer;
+}
+
+.playlist {
+    display: flex;
+    height: 300px;
+    width: 300px;
+    border-radius: 25px;
+    -webkit-box-shadow: 8px 14px 22px 5px rgba(0,0,0,0.48); 
+    box-shadow: 8px 14px 22px 5px rgba(0,0,0,0.48);
+    background-image: var(--gradient-colors);
+    color: var(--font-color);
+    text-align: center;
 }
 
 .player {
@@ -277,4 +291,16 @@ table {
 .volume-slider > svg {
     height: 24px;
     fill: var(--detail-color);
+}
+
+.hidden {
+    display: none;
+}
+
+#song-select-button {
+    background-image: var(--gradient-colors);
+    color: var(--font-color);
+    padding: 8px 24px;
+    border-radius: 24px;
+    cursor: pointer;
 }
